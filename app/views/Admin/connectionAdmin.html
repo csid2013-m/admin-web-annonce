@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+	<head>
+		<title>Web-annonces</title>
+		<meta http-equiv="Content-Type" content="css/html; charest=ISO-8859-1" />
+		<meta name='Identifier-URL' content='http://www.stagesenfrance.fr' />
+		<meta name="Language" content="fr" />
+		<meta name="Author" content="Helene" >
+		<meta name="Copyright" content=" stagesenfrance.fr - 2011" />
+		<meta name="Description" content="Votre site de recherche de stage ." />
+
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css"  href="@{'/public/stylesheets/style_page.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/style_contenue.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/style_annonces.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap-responsive.min.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap-responsive.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap.min.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap.css'}" />
+		<link rel="stylesheet" href="@{'/public/js/formulaire_connexion/css/style.css'}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="@{'/public/js/formulaire_connexion/css/slide.css'}" type="text/css" media="screen" />
+
+		<script type="text/javascript" src="@{'/public/js/h1200915978.js'}"></script>
+		<!--  Caroussel actualit�   -->
+		<script type="text/javascript" src="@{'/public/js/jquery.jcarousel.min.js'}"></script>
+		<!-- JS -->
+		<script type="text/javascript" src="@{'/public/js/mootoolscore.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/packed.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/bootstrap.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/bootstrap.min.js'}"></script>
+
+	</head>
+	<body>
+		<!-- header -->
+		<div id="fondRepeat">
+			<div id="formulaire"></div>
+		</div>
+		<div   id="header" class="header">
+			<!-- Logo -->
+			<div  class="hdrlogo" id="hdrlogo" >
+
+			</div>
+			<!-- Menu -->
+			<div class="hdrmenu" id="hdrmenu">
+				<table id='menu_boutons'>
+					<tr class="tableIcone">
+						<td style="height:90px;width:90px;"><a href='/Application/index'><img   id="imgMenu" alt="" src="@{'/public/images/bouton_accueil_off.png'}"  /></a></td>
+						<td style="height:90px;width:90px;"><a href='/Application/emploi'><img id="imgMenu" alt="" src="@{'/public/images/bouton_offremp_off.png'}"  /></a></td>
+						<td style="height:90px;width:90px;"><img   id="imgMenu" alt="" src="@{'/public/images/bouton_aide_off.png'}"/></td>
+						<td style="height:90px;width:90px;"><img   id="imgMenu" alt="" src="@{'/public/images/bouton_jobsletter_off.png'}" /></td>
+					</tr>
+				</table>
+				<table id='menu_espace'>
+					<tr class="tableIconeEspace">
+						<td style="height:100px;width:100px;"><a href="/Application/connectionCandidat" > <img    height="100px%"  width="100px" id="imgMenuEspace" alt="" src="@{'/public/images/bouton_espcand_off.png'}"  /></a></td>
+						<td style="height:100px;width:100px;"><a href="index.php?action=seConnecterAdmin" ><img    height="10px%"  width="100px" id="imgMenuEspace" alt="" src="@{'/public/images/bouton_espemp_off.png'}"  /></a></td>
+						<td style="height:100px;width:100px;"><a href="/Application/connectionAdmin" ><img    height="10px%"  width="100px" id="imgMenuEspace" alt="" src="@{'/public/images/admin.png'}"  /></a></td>
+					</tr>
+				</table>
+			</div>
+			<div id="hdrPub">
+				la pub....
+			</div>
+			<div id="barreMenu">
+				 
+				#{list items:candidat, as:'prenom'}Bonjour,  	${prenom.prenom_candidat}   #{/list}
+				<div id="deconnecter">
+					#{if candidat != null}
+					<a href="/Application/deconnecter">Se déconnecter</a>
+					#{/if}
+				</div>
+			</div>
+		</div>
+		<!-- Corps de la page -->
+		<div class="content" id="content">
+			<!--les Outils -->
+			<div class="avecmarge"  id="avecmarge">
+
+				#{if candidat == null}
+
+				 
+					<div align="center">
+						<TABLE>
+							<TR>
+								<TD>
+								<form action="/GestionAdmin/connectionAdmin" method="post" class="form-signin">
+									<h2 class="form-signin-heading">Connection administrateur</h2>
+									<input type="text" class="input-block-level"  name="login" id="log"  placeholder="Email address">
+									<input type="password" class="input-block-level"  name="password" id="pwd"  placeholder="Password">
+									<label class="checkbox">
+										<input type="checkbox" value="remember-me">
+										Se souvenir </label>
+									<button class="btn btn-success btn-primary" type="submit">
+										Valider
+									</button>
+								</form></TD>
+							</TR>
+						</TABLE>
+
+					</div>
+				 
+				#{/if}
+				#{if candidat != null}
+				<br>
+				Bonjour, ${candidat.nom_candidat}
+				#{/if}
+			</div>
+			<div class="footer" id="footer">
+				<div class="f_content">
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

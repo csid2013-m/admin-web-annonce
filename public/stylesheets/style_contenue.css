@@ -1,0 +1,45 @@
+img {
+margin : 0px ;
+padding : 0px ;
+}
+.boutons{
+margin : 0px;
+padding :0px;
+width : 995px;
+height : 70px ;
+margin-right: auto;
+margin-left: auto;
+}
+.hautbtn{
+width : 990px;
+height : 40px ;
+margin-right: auto;
+margin-left: auto;
+}
+.btn{
+float : right ;
+margin-left : 5px;
+}
+.tableIcone
+{
+    left: 25px;
+    position: absolute;
+    top: 117px;
+}
+.tableIconeEspace
+{
+    left: 720px;
+    position: absolute;
+    top: 108px;
+}
+
+#deconnecter
+{
+	left: 980px;
+    position: absolute;
+    top:0px;
+}
+
+
+
+

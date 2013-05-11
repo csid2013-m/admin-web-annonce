@@ -1,0 +1,116 @@
+﻿#mon_contenu{
+	margin:0px;
+	padding:0px;
+	display:none;
+	width:auto;
+	height:auto;
+}
+										
+.field{
+width:200px;
+height:180px;
+float:left;
+border : 0px;
+margin-top: 10px;
+z-index:10;
+}
+.map_fr{
+width:240px;
+height:180px;
+border: 1px;
+float:left;
+margin-left:-10px;
+padding-top:5px;
+}
+form, .mots_cles, .select_v, .btn_r{
+font-family: "Trebuchet MS", sans-serif;
+font-size : 14px;
+}
+label{
+font-size : 16px;
+}
+.mots_cles{
+/* background-color: #C0C0C0;
+-moz-border-radius:7px;
+-o-border-radius:7px;
+-webkit-border-radius:7px;
+border-radius:7px; */
+}
+.select_v{
+/* width:92%;
+height: 30px;
+margin-left :10px;
+margin-bottom : 10px;
+overflow:hidden;
+background-color: #C0C0C0;
+/moz-border-radius:7px;
+-o-border-radius:7px;
+-webkit-border-radius:7px;
+border-radius:7px;  */
+}
+/* .btn_r{
+width : 110px;
+height: 40px;
+margin-top :10px;
+margin-left :65px;
+background-color: #8CC63F;
+font-size:16px;
+ font-weight: bolder ;
+-moz-border-radius:7px;
+-o-border-radius:7px;
+-webkit-border-radius:7px;
+border-radius:7px;
+}
+.btn_r:hover{
+background: -webkit-gradient(linear, left top, left bottom, from(#8CC63F), to(#339900));
+background: -moz-linear-gradient(top,#8CC63F,#339900);
+background-color: #339900;
+} */
+
+/* map france*/
+#canvas_france {
+	padding-right:25px ! important;
+	width: 280px;
+	margin-top:20px ! important;
+	margin-left:-40px ! important;
+	/* border: 1px solid #aaa; */
+}
+  
+/*  box suggestion */
+
+.suggestionsBox {
+	position: absolute;
+	left: 85px;
+	margin: -10px 0px 0px 0px;
+	width: 215px;
+	background-color: #212427;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border: 2px solid #000;	
+	color: #fff;
+	z-index:100;
+	-moz-opacity:0.9;
+	opacity: 0.9;
+	filter:alpha(opacity=90);
+	behavior : url(./inc/styles/ie-css3.htc);
+ }
+	
+.suggestionList {
+	margin: 0px;
+	padding: 0px;
+}
+
+.suggestionList li {
+	
+	margin: 0px 0px 3px 0px;
+	padding: 3px;
+	cursor: pointer;
+	list-style:none;
+}
+
+.suggestionList li:hover {
+	background-color: #8CC63F;
+}
+	
+
+

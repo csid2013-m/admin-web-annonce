@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+	<head>
+		<title>Web-annonces</title>
+		<meta http-equiv="Content-Type" content="css/html; charest=ISO-8859-1" />
+		<meta name='Identifier-URL' content='http://www.stagesenfrance.fr' />
+		<meta name="Language" content="fr" />
+		<meta name="Author" content="Helene" >
+		<meta name="Copyright" content=" stagesenfrance.fr - 2011" />
+		<meta name="Description" content="Votre site de recherche de stage ." />
+
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css"  href="@{'/public/stylesheets/style_page.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/style_contenue.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/style_annonces.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap-responsive.min.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap-responsive.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap.min.css'}" />
+		<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap.css'}" />
+		<link rel="stylesheet" href="@{'/public/js/formulaire_connexion/css/style.css'}" type="text/css" media="screen" />
+		<link rel="stylesheet" href="@{'/public/js/formulaire_connexion/css/slide.css'}" type="text/css" media="screen" />
+
+		<script type="text/javascript" src="@{'/public/js/h1200915978.js'}"></script>
+		<!--  Caroussel actualit�   -->
+		<script type="text/javascript" src="@{'/public/js/jquery.jcarousel.min.js'}"></script>
+		<!-- JS -->
+		<script type="text/javascript" src="@{'/public/js/mootoolscore.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/packed.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/bootstrap.js'}"></script>
+		<script type="text/javascript" src="@{'/public/js/bootstrap.min.js'}"></script>
+
+	</head>
+	<body>
+		<!-- header -->
+		<div id="fondRepeat">			 
+		</div>
+		<div   id="header" class="header">
+			<!-- Logo -->
+			<div  class="hdrlogo" id="hdrlogo" >				
+			  <p>
+			      <h1>Administration</h1>
+			    </p> 	 
+			</div>
+		</div>
+
+		</div>
+		<!-- Corps de la page -->
+		<div class="content" id="content">
+			<!--les Outils -->
+			<div class="avecmarge"  id="avecmarge">
+				
+				#{list items:candidat, as:'prenom'}Bonjour,  	${prenom.prenom_candidat}   #{/list}
+				<div id="deconnecter">
+					#{if candidat != null}
+					<a href="/Application/deconnecter">Se déconnecter</a>
+				#{/if}
+				</div>
+				<div class="page-header">
+					<h1><span class="badge badge-success">1<small>____________________</small></span><a href="/Application/admin_annonce">Annonce</a> </h1>
+				</div>
+				<div class="page-header">
+					<h1><span class="badge badge-warning">2<small>_______________________________________</small></span><a href="">Candidats</a></h1>
+				</div>
+				<div class="page-header">
+					<h1><span class="badge badge-info">3<small>___________________________________________________________</small></span><a href="">Entreprises</a></h1>
+				</div>
+			</div>			 
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,33 @@
+
+p{
+	text-align:center;
+}
+/** Carousel 2 **/
+div.jMyCarousel{
+	margin:auto;
+}
+
+div.jMyCarousel ul{
+	background-color:#cccccc;	
+	width:500px;	
+}
+
+div.jMyCarousel ul li{
+	margin:5px;
+	border:1px solid #444;
+	line-height:0px;
+	padding:3px;
+}
+
+div.jMyCarousel ul li a{ /* in case of link */
+	display:block;
+	margin:0px;
+	padding:0px;
+}
+
+div.jMyCarousel ul li a img{
+	display:block;
+	border:0px;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}

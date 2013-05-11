@@ -1,0 +1,170 @@
+﻿<?php
+
+if(isset($_GET['connexion']  == "oui"))
+{	 // Démarrage de la session
+		session_start();	
+		
+			// Si on a dépassé le temps de blocage
+			if(isset($_SESSION['nombre']) and $_SESSION['timestamp_limite'] < time()){
+					// Destruction des variables de session
+					unset($_SESSION['nombre']);
+					unset($_SESSION['timestamp_limite']);
+			}
+
+		// Si le cookie n'existe pas 
+		if(!isset($_COOKIE['marqueur'])){	
+		
+			// Si le formulaire est correctement rempli 
+			if(isset($_POST['identifiant']) and !empty($_POST['identifiant'])  and isset($_POST['motdepasse']) and !empty($_POST['motdepasse'])){
+			
+				// Si la variable de session qui compte le nombre de soumissions n'existe pas
+				if(!isset($_SESSION['nombre'])){
+					// Initialisation de la variable 
+									$_SESSION['nombre'] = 0;
+									// Blocage pendant 10 min
+									$_SESSION['timestamp_limite'] = time() + 60*10;
+				}
+				
+	 
+				$link = @mysql_connect("localhost","admin","22Raphael23")or die(mysql_error());
+				mysql_select_db("test",$link);
+	 
+				
+				// Sécurisation des variables 
+				$identifiant = mysql_real_escape_string($_POST['identifiant']) ; 
+				$motdepasse =  mysql_real_escape_string($_POST['motdepasse']) ;  
+	 
+	 
+				// Formatage de la requête 
+				$requete = "SELECT count(*)
+				FROM contact_stage
+				WHERE nom_contact = '$identifiant' 
+				AND prenom_contact = '$motdepasse'";
+		 
+				// Si on n'essaye pas de nous attaquer par force brute 
+				if($_SESSION['nombre'] < 10){
+					// Connexion à notre base de données
+					// Envoie de la requête au serveur 
+					$query = mysql_query($requete) or die('Erreur SQL!<br/>'.$requete.'<br/>'.mysql_error());
+					
+					// Ici, vous traitez les résultats de votre requête à votre guise 
+						$data = mysql_fetch_array($query);
+						if($data[0] == 1){
+							echo "ok";
+						}	
+					 
+						elseif($data[0] == 0){
+								$erreur = "<font style=color:red;>Compte non reconnu. Devenez un nouveau membre.</font>";
+								$identifiant_color = "color:red;";
+								$motdepasse_color = "color:red;";
+								echo "ok";
+								}
+							else{
+								$erreur ="<font style=color:red;>Probème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.</font>";
+								$identifiant_color = "color:red;";
+								$motdepasse_color = "color:red;";
+								echo "ok";
+								}
+					// Incrémentation de notre variable de session 
+					$_SESSION['nombre']++;
+				}
+				// Si on a dépassé les 10 tentatives
+				else
+				{
+					// Si le cookie marqueur n'existe pas on le crée 
+							if(!isset($_COOKIE['marqueur']))
+							{
+							 $timestamp_marque = time() + 60; // On le marque pendant une minute 
+							 $cookie_vie = time() + 60*60*24; // Durée de vie de 24 heures pour le décalage horaire
+							 setcookie("marqueur", $timestamp_marque, $cookie_vie);
+							}
+					
+					// on quitte le script
+					exit();
+				}
+				
+			}
+				else
+				{
+					if (htmlspecialchars($_REQUEST['action'] == "oui")){
+						$erreur ="<font style=color:red;>Au moins un des champs est videntifiante.<font>";
+					}
+				}
+		}
+		// Si le cookie existe
+		else{
+				// Si le temps de blocage a été dépassé
+				if($_COOKIE['marqueur'] < time())
+				{
+						 // Destruction du cookie
+						 setcookie("marqueur", "", 0);
+				}
+		} 
+}	
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+ 
+</head>
+
+<body>
+ 
+<div id="toppanel">
+		<div id="panel">
+			<div class="content clearfix">
+				<div class="left">
+					 
+					<form class="clearfix" action="./inc/php/connectionCandidat.php" method="post">
+						<h1>Login membre</h1>
+						<label class="grey" for="log">Pseudo:</label>
+						<input class="field" type="text" name="identifiant" id="log" value="" size="23" />
+						<label class="grey" for="pwd">Mot de passe:</label>
+						<input class="field" type="password" name="motdepasse" id="pwd" size="23" />
+						<label><input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" /> &nbsp;Se souvenir de moi</label>
+						<div class="clear"></div>
+						<input type="submit" name="submit" value="Login" class="bt_login" />
+						<a class="lost-pwd" href="#">Mot de passe perdu ?</a>
+					</form>
+				</div>
+			<!--	<div class="left right">			
+				 
+					<form action="#" method="post">
+						<h1>Pas encore membre ? Enregistrez-vous !</h1>				
+						<label class="grey" for="signup">Pseudo:</label>
+						<input class="field" type="text" name="signup" identifiant="signup" value="" size="23" />
+						<label class="grey" for="email">Email:</label>
+						<input class="field" type="text" name="email" identifiant="email" size="23" />
+						<label>Un password vous sera envoyé.</label>
+						<input type="submit" name="submit" value="Register" class="bt_register" />
+					</form>
+				</div>-->
+		</div>	
+	</div>  
+	<div class="tab">
+		<ul class="login">
+			<li class="left">&nbsp;</li>
+			<li>Bonjour !</li>
+			<li class="sep">|</li>
+			<li id="toggle">
+				<a id="open"  class="open" href="#">Se connecter | S'enregistrer</a>
+				<a id="close" style="display:none;" class="close" href="#">Fermer</a>			
+			</li>
+			<li class="right">&nbsp;</li>
+		</ul> 
+	</div> 	
+</div>  
+ 
+	
+    <div id="container">
+		<div id="content" style="padding-top:0px;">
+		</div>
+	</div>
+	
+	
+</body>
+</html>
